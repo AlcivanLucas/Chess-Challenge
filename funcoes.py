@@ -173,3 +173,6 @@ def gameOver(board): # Apens para verificar se o jogo acabou
             return True
     else:
         return False
+    
+    
+    
