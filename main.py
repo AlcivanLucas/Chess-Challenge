@@ -3,17 +3,17 @@ import random
 
 Heuristic = bool(random.getrandbits(1))
 count = 0
-board = chess.Board()
+board = chess.Board() # cria um novo tabuleiro la no terminal
 print("Bem vindo ao Xadrez!")
 playerColor = bool(int(input("Escolha a cor: Branco(1) ou preto(0)? ")))
 print(board)
 while not gameOver(board):
-    if board.turn == playerColor:
-        print(board.legal_moves)
+    if board.turn == playerColor: #So paa determinar quem vai jogar primeiro 
+        print(board.legal_moves) # mostra quais jogadas são possiveis ser realizadas
         move = input("Coloque sua jogada: ")
-        verifyPlayerMove(move,board)
-        print(board)
-    else:
+        verifyPlayerMove(move,board) # verifica se a jogada é valida
+        print(board) # depois da jogada 
+    else: #Desativa a heurística
         if Heuristic:
             italianGame(board,count)
             count += 1
@@ -21,8 +21,9 @@ while not gameOver(board):
         else:
             print("Jogada da IA:")
             move = minimaxRoot(4,board,True)
-            move = chess.Move.from_uci(str(move))
+            move = chess.Move.from_uci(str(move))# Converte a jogada resultante do minimax para o formato adequado e a aplica ao tabuleiro
             board.push(move)
         clearConsole()
         print(board)
+        #fim do loop
 print("Xeque mate")

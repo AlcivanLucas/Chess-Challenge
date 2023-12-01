@@ -2,6 +2,7 @@ import chess
 import os
 
 
+ 
 
 pawnTablew = [
     0, 0, 0, 0, 0, 0, 0, 0,
@@ -132,7 +133,7 @@ def minimax(depth, board, alpha, beta, maximizing):
                 return bestMove
         return bestMove
 
-def evaluateBoard(board):
+def evaluateBoard(board): # Apenas para avaliação do tabuleiro
     i = 0
     evaluation = 0
     x = board.turn
@@ -160,13 +161,13 @@ def getPieceValue(piece,i):
         value = 900 + ((kingsTablew[i]) if piece == "K" else (kingsTableb[i]))
     return value
 
-def verifyPlayerMove(move,board):
+def verifyPlayerMove(move,board): # é a função q verifica se o movimento é valido 
     try:
         board.push_san(move)
     except:
         print("Jogada inválida, tente novamente")
 
-def gameOver(board):
+def gameOver(board): # Apens para verificar se o jogo acabou
     if board.is_checkmate() or board.is_stalemate() or board.is_insufficient_material():
         if(len(list(board.legal_moves)) == 0):
             return True
